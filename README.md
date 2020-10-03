@@ -1,7 +1,3 @@
 # windows_funciones
 
-Powershell Script para automatizar algunas tareas en Windows10
-
-TO-DO
----
-- Desactivar el Defender
+Funciones en powershell para automatizar algunas tareas en Windows10
