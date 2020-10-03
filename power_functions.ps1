@@ -8,11 +8,9 @@ function helpPanel {
 	Write-Output ''
 	Write-Host "2. Para crer usuarios usar el comando createUsers" -ForegroundColor "yellow"
 	Write-Output ''
-	Write-Host "3. Para desactivar Windows Defender usar el comando disableDefender" -ForegroundColor "yellow"
+	Write-Host "3. Para actualizar Windows via Windows Update usar el comando windowsUpdates" -ForegroundColor "yellow"
 	Write-Output ''
-	Write-Host "4. Para actualizar Windows via Windows Update usar el comando windowsUpdates" -ForegroundColor "yellow"
-	Write-Output ''
-	Write-Host "5. Para habilitar escritorio remoto usar el comando remoteDesktop" -ForegroundColor "yellow"
+	Write-Host "4. Para habilitar escritorio remoto usar el comando remoteDesktop" -ForegroundColor "yellow"
 	Write-Output ''
 }
 
@@ -45,44 +43,6 @@ function createUsers {
         Write-Output ''
 }
 
-# Desactivar Defender
-function disableDefender {
-
-	Write-Output ''
-	Write-Host "[!!] Esta función desactiva el Windows Defender solo ejecutarla en entornos controlados" -ForegroundColor "yellow"
-	Try {
-
-	$defenderOptions = Get-MpComputerStatus
-
-	if([string]::IsNullOrEmpty($defenderOptions)) {
-	Write-host "No se ha encontrado el Windows Defender corriendo en el equipo:" $env:computername -foregroundcolor "green"
-	}
-
-	else {
-	Write-host '[!!] Windows Defender se encuentra activo en el equipo:' $env:computername -foregroundcolor "yellow"
-	Write-Host ''
-	Write-host '	Se encuentra Windows Defender habilitado?' $defenderOptions.AntivirusEnabled
-	Write-host '	Se encuentra el servicio de Windows Defender habilitado?' $defenderOptions.AMServiceEnabled
-	Write-host '	Se encuentra el Antispware de Windows Defender habilitado?' $defenderOptions.AntispywareEnabled
-	Write-host '	Se encuentra el componente OnAccessProtection en Windows Defender habilitado?' $defenderOptions.OnAccessProtectionEnabled
-	Write-host '	Se encuentra el componente RealTimeProtection en Windows Defender habilitado?' $defenderOptions.RealTimeProtectionEnabled
-	Write-Output ''
-	
-	Write-Host "[!!] Desinstalando Windows-Defender..." -ForegroundColor "yellow"
-
-	Uninstall-WindowsFeature -Name Windows-Defender
-
-	Write-Output ''
-	Write-Host "[**] Windows Defender ha sido desinstalado, se va a reiniciar el equipo" -ForegroundColor "green"
-	Write-Output ''
-
-	Start-Sleep -Seconds 5
-	Restart-Computer
-	Start-Sleep -Seconds 10
-	}
-	}
-	Catch {}
-}
 # Buscar Actualizaciones 
 function windowsUpdates {
 	
