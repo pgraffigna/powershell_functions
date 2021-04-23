@@ -1,7 +1,9 @@
-## Ejecutar Powershell como Administrador y correr "Set-ExecutionPolicy RemoteSigned" para poder usar el script
+# Ejecutar Powershell como Administrador y correr "Set-ExecutionPolicy RemoteSigned" para poder usar el script
+# Como Administrador primero cargar los modulos con
+# Import-Module .\dark_theme_win10.ps1
 
 # Panel de ayuda
-function helpPanel {
+function Panel {
 
 	Write-Output ''
 	Write-Host "1. Para cambiar el nombre al equipo usar el comando renameComputer" -ForegroundColor "yellow"
